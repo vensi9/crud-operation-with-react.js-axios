@@ -1,10 +1,9 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Table } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 export default function Read() {
-
   const [APIData, setAPIData] = useState([]);
 
   useEffect(() => {
@@ -13,7 +12,6 @@ export default function Read() {
         setAPIData(response.data);
       })
   }, [])
-
 
   const setData = (data) => {
     let { id, firstName, lastName, checkbox } = data;
@@ -46,9 +44,9 @@ export default function Read() {
             <Table.HeaderCell>Last Name</Table.HeaderCell>
             <Table.HeaderCell>Checked</Table.HeaderCell>
             <Table.HeaderCell>Update</Table.HeaderCell>
+            <Table.HeaderCell>Delete</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
-
         <Table.Body>
           {APIData.map((data) => {
             return (
@@ -68,7 +66,6 @@ export default function Read() {
             )
           })}
         </Table.Body>
-
       </Table>
     </div>
   )

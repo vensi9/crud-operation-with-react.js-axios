@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
-.main{
+.main {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,12 +9,41 @@
   color: whitesmoke;
   flex-direction: column;
 }
-.main-header{
+
+.main-header {
   font-family: 'Montserrat', sans-serif;
 }
-.create-form label{
+
+.create-form label {
   color: whitesmoke !important;
   font-family: 'Montserrat', sans-serif;
   font-size: 12px !important;
 }
- 
+
+.content {
+  border: 1px solid;
+  padding: 46px;
+  border-radius: 10px;
+  box-shadow: 0+0+32px white;
+}
+
+.ui.button {
+  margin-top: 18px;
+}
+
+.ui.form input:not([type]),
+.ui.form input:not([type]):focus,
+.ui.checkbox label:before,
+.ui.checkbox label:hover::before,
+.ui.checkbox input:checked~label:after {
+  background: #ffffff17 !important;
+}
+
+.ui.table {
+  box-shadow: 0+0+32px #ffffff45;
+}
+
+.ui.checkbox input:checked~label:after,
+.ui.form input:not([type]) {
+  color: #fff !important;
+}

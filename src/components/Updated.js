@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Checkbox, Form } from 'semantic-ui-react'
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import LoadingBar from 'react-top-loading-bar'
-
+import axios from 'axios';
 
 export default function Update() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [checkbox, setCheckbox] = useState(false);
-  const [id, setID] = useState(null);
   const [progress, setProgress] = useState(0);
+  const [id, setID] = useState(null);
   let history = useNavigate();
 
   useEffect(() => {
@@ -19,6 +18,7 @@ export default function Update() {
     setLastName(localStorage.getItem('Last Name'));
     setCheckbox(localStorage.getItem('Checkbox Value'))
   }, []);
+
   const updateAPIData = () => {
     axios.put(`https://63b7b2474f17e3a931da1e08.mockapi.io/fakeData/${id}`, {
       firstName,
@@ -28,10 +28,15 @@ export default function Update() {
       history('/read')
     })
   }
+
   const handleButtonClick = () => {
+    if(!checkbox){
+      return;
+    }
     setProgress(100); // Set the progress to 100
-    updateAPIData();   // Call the postData function
+    updateAPIData();  // Call the postData function
   }
+
   return (
     <div>
       <LoadingBar
@@ -46,12 +51,12 @@ export default function Update() {
         </Form.Field>
         <Form.Field>
           <label>Last Name</label>
-          <input placeholder='Last Name' value={lastName} onChange={(e) => setLastName(e.target.value)} />
+          <input  placeholder='Last Name' value={lastName} onChange={(e) => setLastName(e.target.value)} />
         </Form.Field>
         <Form.Field>
-          <Checkbox label='I agree to the Terms and Conditions' checked={checkbox} onChange={(e) => setCheckbox(!checkbox)} />
+          <Checkbox label='I agree to the Terms and Conditions' checked={checkbox}  onChange={(e) => setCheckbox(!checkbox)} />
         </Form.Field>
-        <Button type='submit' onClick={handleButtonClick}>Update</Button>
+        <Button type='submit' onClick={handleButtonClick} disabled={!checkbox}>Update</Button>
       </Form>
     </div>
   )
